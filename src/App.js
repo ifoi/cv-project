@@ -9,44 +9,65 @@ import Education from './components/Education';
 function App() {
 
   const [state, setState] = useState({
-    name: '' ,
-    email: '',
-    phone: '' ,
-    schoolName: '' ,
-    titleOfStudy: '' ,
-    dateOfStudy: '',
-    companyName: '' ,
-    title: '' ,
-    dateFrom: '' ,
-    dateUntil: '' ,
+    personalInfo: {
+      firstName: '' ,
+      email: '',
+      phone: '' 
+    },
+
+    education : [
+       {
+        schoolName: '' ,
+        titleOfStudy: '' ,
+        dateOfStudy: '' 
+      },
+    ],
+      experience :[
+        {
+        companyName: '' ,
+        title: '' ,
+        dateFrom: '' ,
+        dateUntil: ''  
+    }, 
+  ],
   })
 
    
   function handleChange(event) {
     const value = event.target.value;
-    setState({ 
-        ...state,
-        [event.target.name]: value
-    });
+    setState((prevState) => ( { 
+        ...prevState,
+        personalInfo:{
+          ...prevState.personalInfo, 
+          [event.target.name]: value 
+         },
+        
+    }));
 }  
  
+function handleEducationChange(event) {
+  const value = event.target.value;
+  setState((prevState) => ( { 
+      ...prevState,
+      education:{
+        ...prevState.education, 
+        [event.target.name]: value 
+       },
+      
+  }));
+} 
 
   return (
     <div className="App">
       {/* <header /> */}
       <form>
 
-      <Person name={state.name} email={state.email} phone={state.phone} handleChange={handleChange} />
+      <Person personalInfo={state.personalInfo} handleChange={handleChange} />
 
-      <Education schoolName={state.schoolName}
-           titleOfStudy={state.titleOfStudy} 
-           dateOfStudy={state.dateOfStudy}
-           handleChange={handleChange} />
+      <Education education={state.education}
+                 handleChange={handleEducationChange} />
       
-       <Experience companyName ={state.companyName}
-          title ={state.title}
-          dateFrom={state.dateFrom}
-          dateUntil={state.dateUntil}
+       <Experience experience={state.experience}
           handleChange={handleChange} /> 
       
        </form>
