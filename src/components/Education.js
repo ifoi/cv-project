@@ -7,7 +7,7 @@ function Education(props){
 
     return (
     
-    <div> <h1> Education</h1>
+    <div> <h3> Education</h3>
         <label htmlFor="schoolName"  > schoolName:</label>     
         <input type="text" id="schoolName" name="schoolName" placeholder="Enter name of the School "  onChange={props.handleChange} />
         
@@ -17,8 +17,8 @@ function Education(props){
         <label htmlFor="dateOfStudy"  > From:</label>     
         <input type="date" id="dateOfStudy" name="dateOfStudy" placeholder="Enter date of study "  onChange={props.handleChange} />
         
-        <label htmlFor="title"  > CompanyName:</label>     
-        <input type="text" id="title" name="title" placeholder="Enter name of the company "  onChange={props.handleChange} />
+        <label htmlFor="endOfStudy"  > To:</label>     
+        <input type="date" id="endOfStudy" name="endOfStudy"   onChange={props.handleChange} />
     </div> 
     
       

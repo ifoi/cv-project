@@ -5,7 +5,7 @@ import React from 'react';
 function Experience(props) {
 
   return( 
-    <div> <h1> Experience</h1>
+    <div> <h3> Experience</h3>
         
         <label htmlFor="companyName"  > CompanyName:</label>     
         <input type="text" id="companyName" name="companyName" placeholder="Enter name of the company "  onChange={props.handleChange} />
