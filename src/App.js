@@ -2,6 +2,7 @@
 import './App.css';
 import {useState} from "react" ;
 import produce from "immer" ;
+import {v4 as uuidv4} from "uuid";
 import Person from './components/Person';
 import Experience from './components/Experience';
 import Education from './components/Education';
@@ -10,20 +11,25 @@ import Footer from './components/Footer';
 
 
 function App() {
+ 
+  const uniqueId = uuidv4() ;
 
   const [state, setState] = useState({
     personalInfo: {
       firstName: '' ,
       lastName: '',
       email: '',
-      phone: '' 
+      phone: '' ,
+     
     },
 
     education : [
        {
+        id: '',
         schoolName: '' ,
         titleOfStudy: '' ,
-        dateOfStudy: '' 
+        dateOfStudy: '',
+        key: uniqueId , 
       },
     ],
       experience :[
@@ -31,8 +37,9 @@ function App() {
         companyName: '' ,
         title: '' ,
         dateFrom: '' ,
-        dateUntil: ''  
-    }, 
+        dateUntil: '' ,
+        key: uniqueId ,
+        }
   ],
   })
 
@@ -68,6 +75,28 @@ function handleEducationChange(event) {
         )
   }
 
+// const getFormData = (event) => {
+//   event.target.form
+// }
+
+ //Add Experience and Education to objects in state object
+
+ const addExperience = (event) => {
+    event.preventDefault();
+   console.log(event.target) ;
+
+   const newExperience = {
+    companyName: 'event.target.value.companyName' ,
+    title: "event.target.value.title" ,
+    dateFrom: "event.target.value.dateFrom" ,
+    dateUntil: "event.target.value.dateUntil" ,  
+}
+
+   setState(produce (draftState => {
+    draftState.experience.push(newExperience)
+    }))
+ }
+
   return (
     <div className="App">
       {/* <header /> */}
@@ -76,10 +105,12 @@ function handleEducationChange(event) {
       <Person personalInfo={state.personalInfo} handleChange={handleChange} />
 
       <Education education={state.education}
-                 handleChange={handleEducationChange} />
+                 handleChange={handleEducationChange}
+                  />
       
        <Experience experience={state.experience}
-          handleChange={handleExperienceChange} /> 
+          handleChange={handleExperienceChange} 
+          addExperience = {addExperience} /> 
       
        </form>
       <p>
