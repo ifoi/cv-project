@@ -12,7 +12,7 @@ const ExperienceItems = (props) => {
         <li key={experience.key}>
         <>
                <label htmlFor="companyName"  > CompanyName: </label>     
-              <input type="text" id="companyName" name="companyName"
+              <input type="text" id={experience.key} name="companyName"
                placeholder="Enter name of the company "
                value={experience.companyName}
                onChange={(event) =>props.handleChange(event, props.key)}
