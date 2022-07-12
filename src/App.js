@@ -72,7 +72,7 @@ function handleEducationChange(event) {
     const value = event.target.value;
     const index = state.experience.map(experience=>  experience.id).indexOf(event.target.id)
 
-    console.log("index of:" + index + " key:" +state.experience.id + " value:" + value +" target key:" + event.target.id)
+    console.log("index of:" + index + " key:" + props.experience[0].key + " value:" + value +" target id:" + event.target.id)
                
     // setState(
     //   produce (draftState => {
