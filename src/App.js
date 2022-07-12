@@ -13,7 +13,7 @@ import Header from './components/Header';
 
 function App() {
  
-  const uniqueId = uuidv4() ;
+//  const uniqueId = uuidv4() ;
 
   const [state, setState] = useState({
     personalInfo: {
@@ -30,7 +30,7 @@ function App() {
         schoolName: '' ,
         titleOfStudy: '' ,
         dateOfStudy: '',
-        key: uniqueId , 
+        key: uuidv4() , 
       },
     ],
       experience :[
@@ -39,7 +39,7 @@ function App() {
         title: '' ,
         dateFrom: '' ,
         dateUntil: '' ,
-        key: uniqueId ,
+        key:uuidv4() ,
         }
   ],
   })
@@ -67,13 +67,18 @@ function handleEducationChange(event) {
       )
 }
 
- const handleExperienceChange =(event) => {
+//  Get key of item and watch state
+ const handleExperienceChange =(event, key) => {
     const value = event.target.value;
-    setState(
-      produce (draftState => {
-        draftState.experience[0][event.target.name] = value;  
-        })        
-        )
+    const index = state.experience.map(experience=>  experience.key).indexOf(event.target.key)
+
+    console.log("index of:" + index + " key:" +state.experience.key + " value:" + value +" target key:" + event.target.key)
+               
+    // setState(
+    //   produce (draftState => {
+    //     draftState.experience[index].event.target.name = value;  
+    //     })        
+    //     )
   }
 
 // const getFormData = (event) => {
@@ -84,18 +89,19 @@ function handleEducationChange(event) {
 
  const addExperience = (event) => {
     event.preventDefault();
-   console.log(event.target) ;
+    console.log(event.target) ;
 
-   const newExperience = {
-    companyName: 'event.target.value.companyName' ,
-    title: "event.target.value.title" ,
-    dateFrom: "event.target.value.dateFrom" ,
-    dateUntil: "event.target.value.dateUntil" ,  
-}
+    const newExperience = {
+      companyName: 'event.target.value.companyName' ,
+      title: "event.target.value.title" ,
+      dateFrom: "event.target.value.dateFrom" ,
+      dateUntil: "event.target.value.dateUntil" ,
+      key: uuidv4() ,  
+  }
 
-   setState(produce (draftState => {
-    draftState.experience.push(newExperience)
-    }))
+    setState(produce (draftState => {
+      draftState.experience.push(newExperience)
+      }))
  }
 
   return (
@@ -112,7 +118,8 @@ function handleEducationChange(event) {
       
        <Experience experience={state.experience}
           handleChange={handleExperienceChange} 
-          addExperience = {addExperience} /> 
+          addExperience = {addExperience} 
+          key = {state.experience.key}/> 
       
        </form>
       <p>

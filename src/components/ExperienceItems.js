@@ -10,33 +10,33 @@ const ExperienceItems = (props) => {
      
                     // let numberOfExperiences = props.experience.length;
         <li key={experience.key}>
-        <form>
+        <>
                <label htmlFor="companyName"  > CompanyName: </label>     
               <input type="text" id="companyName" name="companyName"
                placeholder="Enter name of the company "
                value={experience.companyName}
-               onChange={props.handleChange}
+               onChange={(event) =>props.handleChange(event, props.key)}
               
                />
         
               <label htmlFor="title"  > Job Title:</label>     
-              <input type="text" id="title" name="title" placeholder="Enter job title at the company "  onChange={props.handleChange} />
+              <input type="text" id="title" name="title" placeholder="Enter job title at the company "  onChange={props.handleChange} required />
         
               <label htmlFor="dateFrom"  > From:</label>     
-              <input type="date" id="dateFrom" name="dateFrom"  onChange={props.handleChange} />
+              <input type="date" id="dateFrom" name="dateFrom"  onChange={props.handleChange} required />
         
               <label htmlFor="dateUntil"  > Until:</label>     
-              <input type="date" id="dateUntil" name="dateUntil"   onChange={props.handleChange} />
+              <input type="date" id="dateUntil" name="dateUntil"   onChange={props.handleChange} required/>
         
                <label htmlFor="title"  > Main duties:</label>     
               <textarea type="text" id="title" name="title" placeholder="Enter a description of your duties "  onChange={props.handleChange} /> 
               
               
-            <div>  <button className="btn-primary" onClick={props.addExperience}> Save</button> 
+            <div>  <button className="btn-primary" onClick={props.addExperience}> Add</button> 
         
               <button type="submit" > Reset/Clear info</button>   </div>      
               
-            </form>
+            </>
             </li>
         )
 
