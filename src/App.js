@@ -7,6 +7,7 @@ import Person from './components/Person';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Footer from './components/Footer';
+import Header from './components/Header';
 
 
 
@@ -99,7 +100,8 @@ function handleEducationChange(event) {
 
   return (
     <div className="App">
-      {/* <header /> */}
+      <Header />
+      
       <form>
 
       <Person personalInfo={state.personalInfo} handleChange={handleChange} />
