@@ -5,6 +5,8 @@ import produce from "immer" ;
 import Person from './components/Person';
 import Experience from './components/Experience';
 import Education from './components/Education';
+import Footer from './components/Footer';
+
 
 
 function App() {
@@ -12,6 +14,7 @@ function App() {
   const [state, setState] = useState({
     personalInfo: {
       firstName: '' ,
+      lastName: '',
       email: '',
       phone: '' 
     },
@@ -48,15 +51,22 @@ function App() {
  
 function handleEducationChange(event) {
   const value = event.target.value;
-  setState((prevState) => ( { 
-      ...prevState,
-      education:{
-        ...prevState.education, 
-        [event.target.name]: value 
-       },
-      
-  }));
-} 
+  
+  setState(
+    produce (draftState => {
+      draftState.education[0][event.target.name] = value;  
+      })        
+      )
+}
+
+ const handleExperienceChange =(event) => {
+    const value = event.target.value;
+    setState(
+      produce (draftState => {
+        draftState.experience[0][event.target.name] = value;  
+        })        
+        )
+  }
 
   return (
     <div className="App">
@@ -69,13 +79,17 @@ function handleEducationChange(event) {
                  handleChange={handleEducationChange} />
       
        <Experience experience={state.experience}
-          handleChange={handleChange} /> 
+          handleChange={handleExperienceChange} /> 
       
        </form>
       <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         
+     <Footer personalInfo = {state.personalInfo }
+          experience={state.experience}
+          education={state.education}
+       />   
     </div>
   );
 }
