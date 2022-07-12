@@ -12,7 +12,7 @@ function Person(props) {
         <input type="text" 
                name="firstName"
                className="col-sm-10 col-form-control "
-               id="FirstName"
+               id="firstName"
                value={props.personalInfo.FirstName}
                onChange={props.handleChange}
                placeholder="Enter First name"/> 
