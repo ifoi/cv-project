@@ -1,7 +1,7 @@
 
 import './App.css';
-import {useState} from "react" ;
-import produce from "immer" ;
+// import {useState} from "react" ;
+// import produce from "immer" ;
 import {v4 as uuidv4} from "uuid";
 import Person from './components/Person';
 import Experience from './components/Experience';
@@ -36,47 +36,47 @@ const [experience, setExperience]= useImmer([{
  ); 
 
 
-// const [Education, setEducation]= useImmer([{
-//         id: '',
-//         schoolName: '' ,
-//         titleOfStudy: '' ,
-//         dateOfStudy: '',
-//         key: uuidv4() , 
-//           } ,
-//         ] 
-
-//     ); 
-
-
-
-  const [state, setState] = useState({
-    personalInfo: {
-      firstName: '' ,
-      lastName: '',
-      email: '',
-      phone: '' ,
-     
-    },
-
-    education : [
-       {
-        id: '',
+const [education, setEducation]= useImmer([{
         schoolName: '' ,
         titleOfStudy: '' ,
         dateOfStudy: '',
+        endOfStudy: '' ,
         key: uuidv4() , 
-      },
-    ],
-      experience :[
-        {
-        companyName: '' ,
-        title: '' ,
-        dateFrom: '' ,
-        dateUntil: '' ,
-        key:uuidv4() ,
-        }
-  ],
-  })
+          },
+        ] 
+
+    ); 
+
+
+
+  // const [state, setState] = useState({
+  //   personalInfo: {
+  //     firstName: '' ,
+  //     lastName: '',
+  //     email: '',
+  //     phone: '' ,
+     
+  //   },
+
+  //   education : [
+  //      {
+  //       id: '',
+  //       schoolName: '' ,
+  //       titleOfStudy: '' ,
+  //       dateOfStudy: '',
+  //       key: uuidv4() , 
+  //     },
+  //   ],
+  //     experience :[
+  //       {
+  //       companyName: '' ,
+  //       title: '' ,
+  //       dateFrom: '' ,
+  //       dateUntil: '' ,
+  //       key:uuidv4() ,
+  //       }
+  // ],
+  // })
 
   function handleChange(event) {
     const value = event.target.value;
@@ -90,20 +90,51 @@ const [experience, setExperience]= useImmer([{
 
 function handleEducationChange(event) {
   const value = event.target.value;
-  
-  setState(
-    produce (draftState => {
-      draftState.education[0][event.target.name] = value;  
-      })        
-      )
+  const index = education.map(education => education.key).indexOf(event.target.id) ; 
+ 
+  console.log("value:" +value + " index :" + index + " target :" + event.target.id + " key :" + education.key) ;
+
+    
+  setEducation( draftState =>{
+    draftState[index][event.target.name] = value ;
+  })
 }
 
+const addEducation = (event) => {
+  event.preventDefault();
+
+  const newEducation = {
+    schoolName: '' ,
+    titleOfStudy: '' ,
+    dateOfStudy: '',
+    endOfStudy: '' ,
+    key: uuidv4() ,  
+    }
+
+    setEducation(draftState => {
+    draftState.push(newEducation)
+    })
+}
+function delEducation(event, id) {
+   event.preventDefault() ;
+  
+  const index = education.map(education => education.key).indexOf(id) ; 
+  
+  if ( index > -1) {
+     setEducation( draftState =>{
+      draftState.splice(index, 1) ;
+     });
+  }
+}
+
+
+
 //  Get key of item and watch state
- const handleExperienceChange =(event, key) => {
+ const handleExperienceChange =(event) => {
     const value = event.target.value;
     const index = experience.map(experience=>  experience.key).indexOf(event.target.id) ;
 
-    // console.log("index of:" + index + " key:" + experience[0].key + " value:" + value +" target id:" + event.target.id)
+    console.log("index of:" + index + " key:" + experience[0].key + " value:" + value +" target id:" + event.target.id)
 
       setExperience(draftState => {
           draftState[index][event.target.name] = value;  
@@ -134,16 +165,16 @@ function handleEducationChange(event) {
 
   const delExperience = (event, id) => {
     event.preventDefault();
-    // const index = experience.map(experience=>  experience.key).indexOf(event.target.id) ;
     const index = experience.map(experience=>  experience.key).indexOf(id) ;
 
-    console.log("index :" + index + " target :" + event.target.id + " key :" + experience.key) ;
-
+    // console.log("index :" + index + " target :" + event.target.id + " key :" + experience.key) ;
+    
+    if (index > -1) {
       setExperience(draftState => {
-        if (index > -1) {
+    
         draftState.splice(index, 1);
         }
-      })
+      )  }
   }
 
   
@@ -154,30 +185,25 @@ function handleEducationChange(event) {
       
       <Person personalInfo={personalInfo} handleChange={handleChange} />
 
-      <Education education={state.education}
+      <Education education={education}
                  handleChange={handleEducationChange}
-                //  key={state.education.key}
+                addEducation ={addEducation}
+                delEducation={delEducation}
                   />
-      
-       {/* <Experience experience={state.experience}
-          handleChange={handleExperienceChange} 
-          addExperience = {addExperience} 
-          key = {state.experience.key}/>  */}
-
+   
        <Experience experience={experience}
           handleChange={handleExperienceChange} 
           addExperience = {addExperience} 
-          key = {experience.key}
+          // key = {experience.key}
           delExperience={delExperience}/> 
           
       
-     
-     
+        
         
      <Footer 
           personalInfo = {personalInfo }
-          experience={state.experience}
-          education={state.education}
+          experience={experience}
+          education={education}
        />   
     </div>
   );
