@@ -32,12 +32,15 @@ function Experience(props) {
         <button type="submit" > Reset/Clear info</button>   </div> 
        */}
 
+  
     <ExperienceItems
             experience={props.experience} 
             key={props.key} 
             handleChange={props.handleChange}
             addExperience ={props.addExperience} 
             delExperience = {props.delExperience}/>
+
+         
         </div>
 
     ) ;

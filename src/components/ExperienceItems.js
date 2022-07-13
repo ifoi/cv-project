@@ -8,11 +8,11 @@ const ExperienceItems = (props) => {
        
         return (
      
-                    // let numberOfExperiences = props.experience.length;
-        <li key={experience.key}>
+                    
+        <li key={experience.key}  className="input-group mb-3 row"  >
         <>
-               <label htmlFor="companyName"  > CompanyName: </label>     
-              <input type="text" id={experience.key} name="companyName"
+               <label htmlFor="companyName" className="col-sm-2 col-form-label-lg" > CompanyName: </label>     
+              <input className="col-sm-10 col-form-control " type="text" id={experience.key} name="companyName"
                placeholder="Enter name of the company "
                value={experience.companyName}
                onChange={(event) =>props.handleChange(event, experience.key)}
@@ -20,7 +20,7 @@ const ExperienceItems = (props) => {
                required />
         
               <label htmlFor="title"  > Job Title:</label>     
-              <input type="text" id={experience.key} name="title" placeholder="Enter job title at the company "   onChange={(event) =>props.handleChange(event, experience.key)}required />
+              <input className="col-sm-10 col-form-control " type="text" id={experience.key} name="title" placeholder="Enter job title at the company "   onChange={(event) =>props.handleChange(event, experience.key)}required />
         
               <label htmlFor="dateFrom"  > From:</label>     
               <input type="date" id={experience.key} name="dateFrom"   onChange={(event) =>props.handleChange(event, experience.key)} required />
@@ -47,7 +47,7 @@ const ExperienceItems = (props) => {
     const experiences = props.experience.map(createExperience);
 
     return (
-        <ul className="experiences">
+        <ul className="experiences mb-3 row">
  
             {experiences}
 
