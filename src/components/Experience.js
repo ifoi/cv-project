@@ -34,9 +34,10 @@ function Experience(props) {
 
     <ExperienceItems
             experience={props.experience} 
-            key={props.experience.key} 
+            key={props.key} 
             handleChange={props.handleChange}
-            addExperience ={props.experience.addExperience} />
+            addExperience ={props.addExperience} 
+            delExperience = {props.delExperience}/>
         </div>
 
     ) ;

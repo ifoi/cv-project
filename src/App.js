@@ -78,20 +78,6 @@ const [experience, setExperience]= useImmer([{
   ],
   })
 
-   
-//   function handleChange(event) {
-//     const value = event.target.value;
-//     setState((prevState) => ( { 
-//         ...prevState,
-//         personalInfo:{
-//           ...prevState.personalInfo, 
-//           [event.target.name]: value 
-//          },
-        
-//     }));
-// }  
- 
-
   function handleChange(event) {
     const value = event.target.value;
     const name = event.target.name ;
@@ -117,42 +103,50 @@ function handleEducationChange(event) {
     const value = event.target.value;
     const index = experience.map(experience=>  experience.key).indexOf(event.target.id) ;
 
-    console.log("index of:" + index + " key:" + experience[0].key + " value:" + value +" target id:" + event.target.id)
-               
-    // setState(
-    //   produce (draftState => {
-    //     draftState.experience[index].event.target.name = value;  
-    //     })        
-    //     )
+    // console.log("index of:" + index + " key:" + experience[0].key + " value:" + value +" target id:" + event.target.id)
 
-        setExperience(draftState => {
-        draftState[index][event.target.name] = value;  
-        });        
+      setExperience(draftState => {
+          draftState[index][event.target.name] = value;  
+      });        
         
   }
 
-// const getFormData = (event) => {
-//   event.target.form
-// }
+
 
  //Add Experience and Education to objects in state object
 
  const addExperience = (event) => {
     event.preventDefault();
-    console.log(event.target) ;
 
     const newExperience = {
-      companyName: 'event.target.value.companyName' ,
-      title: "event.target.value.title" ,
-      dateFrom: "event.target.value.dateFrom" ,
-      dateUntil: "event.target.value.dateUntil" ,
+      companyName: '' ,
+      title: "" ,
+      dateFrom: "" ,
+      dateUntil: "" ,
       key: uuidv4() ,  
+      }
+
+      setExperience(draftState => {
+      draftState.push(newExperience)
+      })
   }
 
-    setState(produce (draftState => {
-      draftState.experience.push(newExperience)
-      }))
- }
+
+  const delExperience = (event, id) => {
+    event.preventDefault();
+    // const index = experience.map(experience=>  experience.key).indexOf(event.target.id) ;
+    const index = experience.map(experience=>  experience.key).indexOf(id) ;
+
+    console.log("index :" + index + " target :" + event.target.id + " key :" + experience.key) ;
+
+      setExperience(draftState => {
+        if (index > -1) {
+        draftState.splice(index, 1);
+        }
+      })
+  }
+
+  
 
   return (
     <div className="App">
@@ -173,7 +167,8 @@ function handleEducationChange(event) {
        <Experience experience={experience}
           handleChange={handleExperienceChange} 
           addExperience = {addExperience} 
-          key = {experience.key}/> 
+          key = {experience.key}
+          delExperience={delExperience}/> 
           
       
      

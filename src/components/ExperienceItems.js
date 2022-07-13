@@ -23,18 +23,18 @@ const ExperienceItems = (props) => {
               <input type="text" id={experience.key} name="title" placeholder="Enter job title at the company "   onChange={(event) =>props.handleChange(event, experience.key)}required />
         
               <label htmlFor="dateFrom"  > From:</label>     
-              <input type="date" id={experience.key} name="dateFrom"   onChange={(event) =>props.handleChange(event, experience.key)}required />
+              <input type="date" id={experience.key} name="dateFrom"   onChange={(event) =>props.handleChange(event, experience.key)} required />
         
               <label htmlFor="dateUntil"  > Until:</label>     
-              <input type="date" id={experience.key} name="dateUntil"    onChange={(event) =>props.handleChange(event, experience.key)}required/>
+              <input type="date" id={experience.key} name="dateUntil"    onChange={(event) =>props.handleChange(event, experience.key)} required/>
         
                <label htmlFor="title"  > Main duties:</label>     
               <textarea type="text" id={experience.key} name="title" placeholder="Enter a description of your duties "   onChange={(event) =>props.handleChange(event, experience.key)} /> 
               
               
-            <div>  <button className="btn-primary" onClick={props.addExperience}> Add</button> 
+            <div>
         
-              <button type="submit" > Reset/Clear info</button>   </div>      
+            <button className="btn-primary" onClick={(event) =>props.delExperience(event, experience.key)}> Delete</button> </div>      
               
             </>
             </li>
@@ -50,7 +50,10 @@ const ExperienceItems = (props) => {
         <ul className="experiences">
  
             {experiences}
+
+          <button className="btn-primary" onClick={(event) =>props.addExperience(event)}> Add Experience</button> 
         </ul>
+        
     );
 }
 
