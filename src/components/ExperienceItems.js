@@ -15,21 +15,21 @@ const ExperienceItems = (props) => {
               <input type="text" id={experience.key} name="companyName"
                placeholder="Enter name of the company "
                value={experience.companyName}
-               onChange={(event) =>props.handleChange(event, props.key)}
+               onChange={(event) =>props.handleChange(event, experience.key)}
               
-               />
+               required />
         
               <label htmlFor="title"  > Job Title:</label>     
-              <input type="text" id="title" name="title" placeholder="Enter job title at the company "  onChange={props.handleChange} required />
+              <input type="text" id={experience.key} name="title" placeholder="Enter job title at the company "   onChange={(event) =>props.handleChange(event, experience.key)}required />
         
               <label htmlFor="dateFrom"  > From:</label>     
-              <input type="date" id="dateFrom" name="dateFrom"  onChange={props.handleChange} required />
+              <input type="date" id={experience.key} name="dateFrom"   onChange={(event) =>props.handleChange(event, experience.key)}required />
         
               <label htmlFor="dateUntil"  > Until:</label>     
-              <input type="date" id="dateUntil" name="dateUntil"   onChange={props.handleChange} required/>
+              <input type="date" id={experience.key} name="dateUntil"    onChange={(event) =>props.handleChange(event, experience.key)}required/>
         
                <label htmlFor="title"  > Main duties:</label>     
-              <textarea type="text" id="title" name="title" placeholder="Enter a description of your duties "  onChange={props.handleChange} /> 
+              <textarea type="text" id={experience.key} name="title" placeholder="Enter a description of your duties "   onChange={(event) =>props.handleChange(event, experience.key)} /> 
               
               
             <div>  <button className="btn-primary" onClick={props.addExperience}> Add</button> 
