@@ -1,12 +1,16 @@
 //Experience.js 
 
 import React from 'react';
+import ExperienceItems from './ExperienceItems'
 
 function Experience(props) {
 
+  
+  // map through Experiences
+
   return( 
     <div> <h3> Experience</h3>
-        
+{/*         
         <label htmlFor="companyName"  > CompanyName:</label>     
         <input type="text" id="companyName" name="companyName" placeholder="Enter name of the company "  onChange={props.handleChange} />
 
@@ -22,8 +26,20 @@ function Experience(props) {
          <label htmlFor="title"  > Main duties:</label>     
         <textarea type="text" id="title" name="title" placeholder="Enter a description of your duties "  onChange={props.handleChange} /> 
         
-     </div> 
-                
+        
+      <div>  <button className="btn-primary" onClick={props.addExperience}> Save</button> 
+
+        <button type="submit" > Reset/Clear info</button>   </div> 
+       */}
+
+    <ExperienceItems
+            experience={props.experience} 
+            key={props.key} 
+            handleChange={props.handleChange}
+            addExperience ={props.addExperience} 
+            delExperience = {props.delExperience}/>
+        </div>
+
     ) ;
 }
 
