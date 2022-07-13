@@ -13,16 +13,16 @@ function Person(props) {
                name="firstName"
                className="col-sm-10 col-form-control "
                id="firstName"
-               value={props.personalInfo.FirstName}
+               value={props.personalInfo.firstName}
                onChange={props.handleChange}
                placeholder="Enter First name"/> 
 
-    <label htmlFor="LastName" className="col-sm-2 col-form-label-lg">Last Name: </label> 
+    <label htmlFor="lastName" className="col-sm-2 col-form-label-lg">Last Name: </label> 
         <input type="text" 
-               name="LastName"
+               name="lastName"
                className="col-sm-10 col-form-control"
-               id="LastName"
-               value={props.personalInfo.LastName}
+               id="lastName"
+               value={props.personalInfo.lastName}
                onChange={props.handleChange}
                placeholder="Enter your Last Name"/>                
         
