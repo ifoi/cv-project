@@ -172,9 +172,7 @@ function handleEducationChange(event) {
           
       
      
-      <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+     
         
      <Footer 
           personalInfo = {personalInfo }

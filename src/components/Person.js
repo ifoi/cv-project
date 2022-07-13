@@ -6,7 +6,9 @@ import React from 'react';
 function Person(props) {
 
 
-    return (  <form> <div className="mb-3 row" > 
+    return (  
+     <form>  
+        <div className="mb-3 row" > 
           <h3> Personal Information </h3>
         <label htmlFor="firsName"  className="col-sm-2 col-form-label-lg" > First Name: </label> 
         <input type="text" 
@@ -37,7 +39,8 @@ function Person(props) {
     
       <div>  <button className="btn-primary" > Save</button> 
         <button type="submit" > Reset/Clear info</button>   </div> 
-    </div>  </form>
+    </div> 
+     </form>
      );
 }
 
