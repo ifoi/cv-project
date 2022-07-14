@@ -38,7 +38,7 @@ function Person(props) {
        <input type="tel"  id="phone" name="phone" className="col-sm-10 col-form-control" value={props.personalInfo.phone} onChange={props.handleChange} placeholder="Enter phone"/> 
     
       <div>  <button className="btn-primary" > Save</button> 
-        <button type="submit" > Reset/Clear info</button>   </div> 
+        <button type="submit" onSubmit={(event)=> props.resetForm(event)}> Reset/Clear Personal info</button>   </div> 
     </div> 
      </form>
      );
