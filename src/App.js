@@ -176,14 +176,22 @@ function delEducation(event, id) {
         }
       )  }
   }
-
+ 
+   // Reset form 
+   const resetForm =(event)=> {
+    event.preventDefault() ;
+  
+    event.target.reset()
+    
+   }
   
 
   return (
     <div className="App">
       <Header />
       
-      <Person personalInfo={personalInfo} handleChange={handleChange} />
+      <Person personalInfo={personalInfo}
+            resetForm={resetForm} handleChange={handleChange} />
 
       <Education education={education}
                  handleChange={handleEducationChange}
