@@ -9,7 +9,7 @@ function Education(props){
        
     <li key={education.key}  className="input-group mb-3 row"  > 
     <>
-        <label htmlFor="schoolName"  > schoolName:</label>     
+        <label htmlFor="schoolName"  > School Name:</label>     
         <input type="text" id={education.key} name="schoolName" placeholder="Enter name of the School "  onChange={(event) =>props.handleChange(event)} />
         
         <label htmlFor="titleOfStudy"  > Degree:</label>     
